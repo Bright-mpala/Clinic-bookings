@@ -1,0 +1,101 @@
+
+{% load static %}
+{% if user.is_authenticated %}
+
+<h1 class="p-2 text-center mb-5 text-warning">You Are Already Signed in!</h1>
+
+{% else %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>regiser</title>
+    <link rel="stylesheet" href="{% static 'register.css'%}">
+    <script src="{% static 'scripts.js'%}" defer></script>
+</head>
+<body>
+    <!--messages-->
+    <div class="messages">
+        <img class="message-icon" src="{%static 'icons/sign.svg'%}" alt="error">
+        <div class="message">
+            <h3 class="message-title title">Error</h3>
+            <p class="message-paragraph">Something went wrong!</p>
+        </div>
+        <span class="message-close error">x</span>
+    </div>
+    <!--end messages-->
+
+    <div class="container">
+        <div class="card center spacer">
+            <h1 class="title text-center">Register With</h1>
+            <div class="social-login">
+                <button class="social-btn">
+                    <img class="icon" src="{% static 'icons/gmail.svg'%}" alt="gmail icon">
+                    Gmail
+                </button>
+                <button class="social-btn">
+                    <img class="icon" src="{% static 'icons/facebook.svg'%}" alt="gmail icon">
+                    Facebook
+                </button>
+            </div>
+            <div class="text-center line form-divider">or</div>
+            <form method="POST" class="{%url 'register'%}" id="signup-form">
+                <div class="input-group">
+                    
+                 
+                   
+                  <img class="icon input-icon" src="{% static 'icons/profile-user.svg'%}" alt="">
+                  {% csrf_token %}
+                    {{form.username}}
+                  <!--input required name="username" id="username" type="text" class="form-input" placeholder="john doe" maxlength="16" minlength="6"-->
+                </div>
+                <div class="input-group">
+                <img class="icon input-icon" src="{% static 'icons/profile-user.svg'%}" alt="">
+                {{form.first_name}}
+              <!--input required name="username" id="username" type="text" class="form-input" placeholder="john doe" maxlength="16" minlength="6"-->
+            </div>
+            <div class="input-group">
+            <img class="icon input-icon" src="{% static 'icons/profile-user.svg'%}" alt="">
+            {{form.last_name}}
+          <!--input required name="username" id="username" type="text" class="form-input" placeholder="john doe" maxlength="16" minlength="6"-->
+        </div>
+                <div class="input-group">
+                    
+                    <img class="icon input-icon" src="{% static 'icons/envelope.png'%}" alt="">
+                    {{form.email}}
+                    <!--input required name="email" id="email" type="email" class="form-input" placeholder="johndoe@mail.com"-->
+                </div>
+                <div class="input-group">
+                    <img class="icon input-icon" src="{%static 'icons/key.svg'%}" alt="">
+                    {{form.password1}}
+                    <!--input required name="password1" id="password1" type="password" class="form-input" placeholder="password" maxlength="22" minlength="8"-->
+                </div>
+                <div class="input-group">
+                  
+              <img class="icon input-icon" src="{%static 'icons/key.svg'%}" alt="">
+              {{form.password2}}
+            <!--input required name="password2" id="password2" type="password" class="form-input" placeholder=" confirm password" maxlength="22" minlength="8"-->
+                </div>
+                <input type="submit" class="submit" value="Signup"href ="{%url 'index'%}" >
+            </form>
+
+        </div>
+
+
+    </div>
+
+    <div class="redirect">
+        Already have an account?&nbsp;<a href="{% url 'login'%}" class="link">Login</a>
+        <br><br>
+        <a href="forgot-password.html" class="link">Forgot password?</a>
+    </div>
+
+
+</body>
+</html>
+
+{% endif %}
